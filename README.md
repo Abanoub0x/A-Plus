@@ -6,270 +6,166 @@ It’s a quick reference and a portfolio of concepts I’ve learned and practice
 ---
 
 ## 📚 Contents
-- ⚙️ [Windows Basics](#️-windows-basics)
-- 🗂️ [System Folders & Architecture](#️-system-folders--architecture)
-- 🔧 [Operating Systems & Administration](#-operating-systems--administration)
-- 🌍 [Environment Variables](#-environment-variables)
-- 📡 [Networking & Remote Access](#-networking--remote-access)
-- 🔐 [Security, Threats & Hardening](#-security-threats--hardening)
-- 🧰 [Troubleshooting & Recovery](#-troubleshooting--recovery)
-- ☁️ [Virtualization, Cloud & Enterprise Tools](#️-virtualization-cloud--enterprise-tools)
-- 🧩 [How Firmware, Drivers & OS Work Together](#-how-firmware-drivers--os-work-together)
+- 🖥️ [Hardware & BIOS/UEFI](#️-hardware--biosuefi)  
+- ⚙️ [Windows Basics](#️-windows-basics)  
+- 🗂️ [System Folders & Architecture](#️-system-folders--architecture)  
+- 💻 [Operating Systems & Administration](#-operating-systems--administration)  
+- 🌍 [Environment Variables](#-environment-variables)  
+- 🌐 [Networking & Remote Access](#-networking--remote-access)  
+- 🔐 [Security, Threats & Malware](#-security-threats--malware)  
+- 🛠️ [Troubleshooting & Backup](#-troubleshooting--backup)  
+- ☁️ [Virtualization, Cloud & Enterprise Tools](#️-virtualization-cloud--enterprise-tools)  
+- 🧩 [How Firmware, Drivers & OS Work Together](#-how-firmware-drivers--os-work-together)  
 - 📝 [Useful Command References](#-useful-command-references)
 
 ---
 
+## 🖥️ Hardware & BIOS/UEFI
+- Installing & troubleshooting PCs, mobile devices, peripherals, CPUs, RAM, GPUs, and storage.  
+- BIOS vs UEFI: startup process, Secure Boot, GPT vs MBR, partition limits.  
+- Key system folders:  
+  - `C:\Program Files` (64-bit apps)  
+  - `C:\Program Files (x86)` (32-bit apps)  
+  - `C:\Windows\System32` (64-bit system files)  
+  - `C:\Windows\SysWOW64` (32-bit compatibility layer)  
+  - `C:\ProgramData` (hidden, machine-wide app data)  
+  - `C:\Users\<name>` (user profiles)
+
+---
+
 ## ⚙️ Windows Basics
-- **OS versions & channels**: core differences across Windows 7/8/10/11 (features, servicing, UAC defaults, security baselines).
-- **File systems**: FAT32, exFAT, **NTFS** (permissions, compression, EFS), Linux **ext4**, Apple **APFS** (snapshots).
-- **Boot firmware**:
-  - **BIOS + MBR** (legacy, 2 TB limit, 4 primary partitions).
-  - **UEFI + GPT** (modern, >2 TB, many partitions, Secure Boot, faster startup).
-- **Safe boot options**: Safe Mode, Safe Mode w/ Networking, Safe Mode w/ Command Prompt.
-- **Core utilities**: `msconfig`, `taskmgr`, `services.msc`, `regedit`, `diskmgmt.msc`, `compmgmt.msc`.
+- **OS Versions**: Windows 7/8/10/11 (features, servicing, UAC defaults, security baselines).  
+- **File Systems**: FAT32, exFAT, NTFS, ext4 (Linux), APFS (Apple).  
+- **Safe Boot Options**: Safe Mode, Safe Mode w/ Networking, Safe Mode w/ Command Prompt.  
+- **Core utilities**:  
+  - `msconfig`  
+  - `taskmgr`  
+  - `services.msc`  
+  - `regedit`  
+  - `diskmgmt.msc`  
+  - `compmgmt.msc`
 
 ---
 
 ## 🗂️ System Folders & Architecture
-- `C:\Windows\System32` → 64-bit system files on 64-bit Windows.
-- `C:\Windows\SysWOW64` → 32-bit system files/redirector (name is historical).
-- `C:\Program Files` (64-bit apps) vs `C:\Program Files (x86)` (32-bit apps).
-- `C:\ProgramData` (hidden, machine-wide app data) and `C:\Users\<name>\AppData` (per-user).
-- **NTFS features**: permissions (DAC), inheritance, compression, EFS, **Alternate Data Streams (ADS)**.
+- `System32` → 64-bit binaries on 64-bit OS.  
+- `SysWOW64` → 32-bit binaries on 64-bit OS (Windows-on-Windows).  
+- `ProgramData` → machine-wide application data.  
+- `AppData` (`Roaming`, `Local`) → user-specific application data.  
+- **NTFS features**: permissions, inheritance, compression, encryption (EFS), **Alternate Data Streams (ADS)**.
 
 ---
 
-## 🔧 Operating Systems & Administration
-- **Install & configure**: Windows, Linux, and mobile OS.
-- **Administration tools**:
-  - **MMC** snap-ins (Event Viewer, Services, Local Users & Groups, Device Manager via `devmgmt.msc`).
-  - **Disk Management** (partitions/volumes, MBR vs GPT).
-  - **Task Scheduler** (automation by event/time/startup).
-  - **Windows Firewall** with Advanced Security (inbound/outbound, profiles).
-  - **Control Panel & Settings** for accounts, network, devices, BitLocker, Region, Optional Features.
-- **Accounts & services**:
-  - Built-in service accounts: **LocalSystem**, **LocalService**, **NetworkService** (least privilege vs network identity).
-  - User accounts: local, Microsoft account, domain (AD) accounts.
-  - Services vs processes, start types (Auto/Delayed/Manual/Disabled), service logon accounts.
-- **SIDs (Security Identifiers)**:
-  - Format: `S-1-5-21-<domainID>-<rid>`. Identify users, groups, and well-known principals.
-- **Automation**:
-  - **Task Scheduler**: `schtasks` / PowerShell `Register-ScheduledTask`.
-  - **WMI/CIM** via PowerShell: query/manage OS, services, hardware (`Get-CimInstance Win32_...`).
+## 💻 Operating Systems & Administration
+- Installing and configuring Windows, Linux, and mobile OS.  
+- Administration tools:  
+  - **MMC Snap-ins**: Event Viewer, Services, Local Users & Groups, Device Manager  
+  - **Disk Management**: MBR vs GPT  
+  - **Task Scheduler**: run tasks by event/time/startup  
+  - **Windows Firewall w/ Advanced Security**: inbound/outbound rules, allow/block apps  
+  - **Control Panel/Settings**: accounts, BitLocker, Region, Features  
+- **Accounts & Services**:  
+  - Local, Microsoft, and domain (AD) accounts  
+  - Built-in service accounts: LocalSystem, LocalService, NetworkService  
+  - Services vs processes, start types (Auto/Delayed/Manual/Disabled)  
+- **SIDs (Security Identifiers)**:  
+  - Format: `S-1-5-21-<domainID>-<rid>`  
+  - Used by Windows for user, group, and security object identity  
+- **Automation**:  
+  - `schtasks`, PowerShell `Register-ScheduledTask`  
+  - WMI/CIM via PowerShell (`Get-CimInstance`)
 
 ---
 
 ## 🌍 Environment Variables
-**What they are:** Key-value pairs the OS and apps use for configuration and path resolution.
+- **Scopes**: process/session, user, system (admin)  
+- **Common variables**:  
+  - `%PATH%` → executable lookup  
+  - `%TEMP%`, `%TMP%` → temp files  
+  - `%USERPROFILE%` → user directory  
+  - `%APPDATA%`, `%LOCALAPPDATA%` → application data  
+  - `%PROGRAMFILES%`, `%SYSTEMROOT%`  
+- **Examples**:
+  ```cmd
+  echo %PATH%
+  set MYVAR=hello
+  setx MYVAR "hello"
+  setx PATH "%PATH%;C:\Tools"
 
-- **Scopes**:
-  - **Process/session**: exists only for current shell/app.
-  - **User**: persists for the current user.
-  - **System**: persists machine-wide (requires admin to edit).
-
-- **Common vars**:
-  - `%PATH%` → where Windows looks for executables.
-  - `%TEMP%` / `%TMP%` → temp file locations.
-  - `%USERPROFILE%` → `C:\Users\<User>`.
-  - `%APPDATA%` / `%LOCALAPPDATA%` → roaming/local app data.
-  - `%PROGRAMFILES%`, `%PROGRAMFILES(X86)%`, `%SYSTEMROOT%`.
-
----
-## 🌐 Networking & Remote Access  
-### Core Networking Concepts  
-- **IPv4 vs IPv6**:  
-  - IPv4: 32-bit (e.g., `192.168.1.1`), NAT, limited addresses.  
-  - IPv6: 128-bit (e.g., `2001:0db8:85a3::8a2e:0370:7334`), no NAT, built-in security.  
-- **DHCP (Dynamic Host Configuration Protocol)**:  
-  - Assigns IP addresses automatically (UDP port 67/68).  
-  - `ipconfig /release` and `ipconfig /renew` to refresh leases.  
-- **DNS (Domain Name System)**:  
-  - Resolves hostnames to IPs (e.g., `google.com` → `142.250.190.78`).  
-  - Uses UDP port 53; troubleshoot with `nslookup` or `dig`.  
-
-
-### Key Ports & Protocols  
-| Port | Protocol | Use Case                     |  
-|------|----------|------------------------------|  
-| 21   | FTP      | File transfers (unencrypted) |  
-| 22   | SSH      | Secure remote shell          |  
-| 23   | Telnet   | Unencrypted remote access    |  
-| 25   | SMTP     | Email sending                |  
-| 53   | DNS      | Domain name resolution       |  
-| 80   | HTTP     | Web traffic (unsecured)      |  
-| 443  | HTTPS    | Web traffic (encrypted)      |  
-| 3389 | RDP      | Remote Desktop Protocol      |  
-| 445  | SMB      | File/print sharing (Windows) |  
-
-### Remote Access Technologies  
-- **RDP (Remote Desktop Protocol)**:  
-  - Windows-native remote GUI access (port 3389).  
-  - Requires client (`mstsc.exe`) and host enablement.  
-- **VPN (Virtual Private Network)**:  
-  - Encrypted tunnel for secure remote access (e.g., IPSec, OpenVPN).  
-- **SSH (Secure Shell)**:  
-  - Encrypted command-line access (Linux/Windows via OpenSSH).  
-
-### Troubleshooting Commands  
-```cmd
-ping google.com           # Test connectivity  
-tracert google.com        # Trace network path  
-netstat -ano              # List active connections + PIDs  
-nslookup google.com       # DNS lookup  
-ipconfig /all             # Detailed network config  
-
-
-
-## 🔐 Security, Threats & Malware  
-
-### Core Security Principles (CIA Triad)  
-- **Confidentiality**:  
-  - Encryption (AES-256, RSA)  
-  - Access controls (RBAC, least privilege)  
-- **Integrity**:  
-  - Hashing (SHA-256, MD5* [deprecated])  
-  - Digital signatures (PKI, certificates)  
-- **Availability**:  
-  - Redundancy (RAID, failover clusters)  
-  - DDoS mitigation (cloudflare, rate limiting)  
+## 🌐 Networking & Remote Access
+- **Core Networking**: IP addressing (IPv4/IPv6), DNS, DHCP  
+- **Ports & Protocols**:  
+  - FTP (21)  
+  - SSH (22)  
+  - RDP (3389)  
+  - SMB (445)  
+- **Authentication & Access Control**: RADIUS, TACACS+, Kerberos, AAA  
+- **Remote Access**: RDP, VPNs, SSH  
+- **Troubleshooting Tools**: ping, ipconfig, tracert, netstat
 
 ---
 
-### 🚨 Common Threats & Attacks  
-
-#### Malware Types  
-| Type          | Description                          | Example                |  
-|---------------|--------------------------------------|------------------------|  
-| **Virus**     | Attaches to files; requires execution | ILOVEYOU (2000)       |  
-| **Worm**      | Self-replicating; spreads via networks | WannaCry (2017)       |  
-| **Trojan**    | Masquerades as legitimate software   | Emotet banking Trojan |  
-| **Ransomware**| Encrypts files for ransom            | Locky, REvil          |  
-| **Spyware**   | Steals data (keystrokes, screenshots)| Pegasus (mobile)      |  
-| **Rootkit**   | Gains kernel-level access            | Stuxnet               |  
-
-#### Social Engineering Attacks  
-| Type            | Method                              | Defense                     |  
-|-----------------|-------------------------------------|-----------------------------|  
-| **Phishing**    | Fake emails/websites                | Verify sender URLs          |  
-| **Spear Phishing** | Targeted phishing (e.g., CFO fraud) | Multi-factor authentication |  
-| **Vishing**     | Voice call scams ("IT support")     | Hang up & verify            |  
-| **Tailgating**  | Unauthorized physical access        | Badge readers               |  
-| **Quid Pro Quo**| "Free service" for credentials      | Employee training           |  
-
----
-
-### 🛡️ Security Tools & Mitigations  
-
-#### Encryption Technologies  
-- **Full-Disk Encryption**: BitLocker (Windows), FileVault (macOS), LUKS (Linux)  
-- **File-Level Encryption**: EFS (Windows), GPG (cross-platform)  
-- **VPN Protocols**: IPSec, OpenVPN, WireGuard  
-
-#### Access Control  
-- **RBAC (Role-Based Access Control)**: Assign permissions by job function  
-- **MAC (Mandatory Access Control)**: Used in military/government (SELinux)  
-- **Password Policies**:  
-  - Minimum length (12+ chars)  
-  - Complexity requirements  
-  - Regular rotation (90 days)  
-
-#### Defense Tools  
-| Tool Category       | Examples                          | Purpose                          |  
-|---------------------|-----------------------------------|----------------------------------|  
-| **Firewalls**       | Windows Defender Firewall, pfSense | Block unauthorized traffic       |  
-| **IDS/IPS**         | Snort, Suricata                   | Detect/prevent intrusions        |  
-| **SIEM**           | Splunk, Wazuh                     | Centralized threat monitoring    |  
-| **Sandboxing**      | Cuckoo Sandbox, Windows Sandbox   | Analyze suspicious files safely  |  
+## 🔐 Security, Threats & Malware
+- **CIA Triad**: Confidentiality, Integrity, Availability  
+- **Encryption & Access Control**: BitLocker, EFS, DRM  
+- **Security Tools**: firewalls, IDS/IPS, sandboxing, test environments  
+- **Malware Types**:  
+  - viruses  
+  - worms  
+  - trojans  
+  - ransomware  
+  - spyware  
+  - adware  
+  - rootkits  
+  - keyloggers  
+  - botnets  
+- **Social Engineering**:  
+  - phishing  
+  - spear-phishing  
+  - smishing  
+  - vishing  
+  - pretexting  
+  - impersonation  
+  - tailgating  
+  - baiting  
+- **Indicators of Compromise**: unusual CPU/network usage, crashes, slowdowns  
+- **Mobile Security**: APKs, firmware, rooting basics, secure device management
 
 ---
 
-### 🚦 Indicators of Compromise (IoCs)  
-- **System Symptoms**:  
-  - Unexpected CPU/RAM usage spikes  
-  - Unusual network traffic (e.g., beaconing)  
-  - Disabled security tools (firewall/AV)  
-- **Log Red Flags**:  
-  - Multiple failed login attempts  
-  - New admin accounts (`net user`)  
-  - Unusual process executions (`tasklist`)  
+## 🛠️ Troubleshooting & Backup
+- **Diagnose Issues**: RAM, CPU, GPU, drivers, services, firewalls, malware  
+- **Tools**: Safe Mode, `sfc`, `chkdsk`, Event Viewer  
+- **Backup Strategies**: full, incremental, differential, snapshots, cloud  
+- **Disaster Recovery**: restoring system & data
 
 ---
 
-### 📜 Compliance & Best Practices  
-- **Regular Updates**: Patch OS/apps (WSUS, `apt upgrade`)  
-- **Backup 3-2-1 Rule**:  
-  - 3 copies of data  
-  - 2 different media types  
-  - 1 offsite copy  
-- **Mobile Device Management (MDM)**:  
-  - Remote wipe (Intune, Jamf)  
-  - Containerization (separate work/personal data)  
-
-
-
-# Troubleshooting
-
-## General Troubleshooting Steps
-1. **Identify the Problem** – Gather information, ask users questions, and recreate the issue if possible.  
-2. **Establish a Theory of Probable Cause** – Start with simple causes before moving to complex ones.  
-3. **Test the Theory** – Verify if the cause actually solves the issue.  
-4. **Establish a Plan of Action** – If the theory is confirmed, plan steps to resolve it.  
-5. **Implement the Solution** – Apply the fix carefully.  
-6. **Verify Functionality** – Ensure the system works and no new issues were introduced.  
-7. **Document the Process** – Record symptoms, steps taken, and final resolution.
-
-## Common PC Issues
-- **Slow Performance** → Check CPU, RAM, background processes, and malware.  
-- **No Internet** → Verify cables, Wi-Fi, router, DNS, or IP settings.  
-- **Blue Screen of Death (BSOD)** → Check drivers, recent updates, or failing hardware.  
-- **Overheating** → Clean fans, reapply thermal paste, check airflow.  
-- **Peripheral Issues** → Update drivers, check cables/ports.  
-
-## Troubleshooting Tools
-- **ping** – Test network connectivity.  
-- **ipconfig/ifconfig** – Check IP configurations.  
-- **tracert/traceroute** – Trace packet path.  
-- **netstat** – Show open connections/ports.  
-- **Task Manager / Resource Monitor** – Monitor performance.  
-- **Event Viewer** – Logs system/application errors.  
-- **Safe Mode** – Boot with minimal drivers for debugging.  
+## ☁️ Virtualization, Cloud & Enterprise Tools
+- **Virtual Machines & Hypervisors**: Type 1 vs Type 2  
+- **Cloud Service Models**:  
+  - IaaS  
+  - PaaS  
+  - SaaS  
+- **Remote Monitoring & Management (RMM)** tools  
+- **Ticketing Systems**: workflows and IT support  
+- **Enterprise Sysadmin Basics**
 
 ---
 
-# Cloud Computing
-
-## What is Cloud?
-Cloud computing delivers computing services (servers, storage, databases, networking, software) over the internet on-demand.
-
-## Cloud Service Models
-- **IaaS (Infrastructure as a Service)** – Provides virtualized computing resources. (e.g., AWS EC2, Azure VMs, Google Compute Engine).  
-- **PaaS (Platform as a Service)** – Provides environment for developers to build apps. (e.g., Heroku, Google App Engine).  
-- **SaaS (Software as a Service)** – Provides software accessible via browser. (e.g., Gmail, Office 365, Salesforce).  
-
-## Cloud Deployment Models
-- **Public Cloud** – Services offered over the internet and shared across multiple users.  
-- **Private Cloud** – Exclusive cloud infrastructure for a single organization.  
-- **Hybrid Cloud** – Mix of public and private for flexibility.  
-- **Community Cloud** – Shared by several organizations with similar needs.  
-
-## Advantages of Cloud
-- Scalability  
-- Cost efficiency (pay-as-you-go)  
-- Accessibility from anywhere  
-- Reliability and redundancy  
-- Security (depends on provider + user config)  
-
-## Common Cloud Security Concerns
-- Data breaches  
-- Misconfigurations  
-- Insecure APIs  
-- Lack of encryption  
-- Insider threats  
-
-## Troubleshooting in Cloud
-- **Connectivity Issues** → Check VPN, firewall, or internet link.  
-- **Service Unavailability** → Check cloud provider’s status page.  
-- **Latency** → Check network path, region proximity, load balancing.  
-- **Authentication Problems** → Verify IAM policies, roles, and permissions.  
+## 🧩 How Firmware, Drivers & OS Work Together
+- **Firmware (BIOS/UEFI)**: initializes hardware, passes control to bootloader  
+- **Drivers**: translators between OS and hardware  
+- **Operating System**: manages processes, memory, hardware, and provides APIs for apps
 
 ---
+
+## 📝 Useful Command References
+- `ipconfig` → Network info  
+- `ping` → Connectivity test  
+- `netstat` → Active connections  
+- `tracert` → Route trace  
+- `sfc /scannow` → System file checker  
+- `chkdsk` → Disk check  
+- `gpupdate /force` → Refresh Group Policy
+
