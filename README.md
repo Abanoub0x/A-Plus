@@ -16,7 +16,6 @@ It’s a quick reference and a portfolio of concepts I’ve learned and practice
 - 🛠️ [Troubleshooting & Backup](#-troubleshooting--backup)  
 - ☁️ [Virtualization, Cloud & Enterprise Tools](#️-virtualization-cloud--enterprise-tools)  
 - 🧩 [How Firmware, Drivers & OS Work Together](#-how-firmware-drivers--os-work-together)  
-- 📝 [Useful Command References](#-useful-command-references)
 
 ---
 
@@ -157,15 +156,4 @@ It’s a quick reference and a portfolio of concepts I’ve learned and practice
 - **Firmware (BIOS/UEFI)**: initializes hardware, passes control to bootloader  
 - **Drivers**: translators between OS and hardware  
 - **Operating System**: manages processes, memory, hardware, and provides APIs for apps
-
----
-
-## 📝 Useful Command References
-- `ipconfig` → Network info  
-- `ping` → Connectivity test  
-- `netstat` → Active connections  
-- `tracert` → Route trace  
-- `sfc /scannow` → System file checker  
-- `chkdsk` → Disk check  
-- `gpupdate /force` → Refresh Group Policy
 
