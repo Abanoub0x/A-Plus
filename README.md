@@ -117,3 +117,90 @@ tracert google.com        # Trace network path
 netstat -ano              # List active connections + PIDs  
 nslookup google.com       # DNS lookup  
 ipconfig /all             # Detailed network config  
+
+
+
+## 🔐 Security, Threats & Malware  
+
+### Core Security Principles (CIA Triad)  
+- **Confidentiality**:  
+  - Encryption (AES-256, RSA)  
+  - Access controls (RBAC, least privilege)  
+- **Integrity**:  
+  - Hashing (SHA-256, MD5* [deprecated])  
+  - Digital signatures (PKI, certificates)  
+- **Availability**:  
+  - Redundancy (RAID, failover clusters)  
+  - DDoS mitigation (cloudflare, rate limiting)  
+
+---
+
+### 🚨 Common Threats & Attacks  
+
+#### Malware Types  
+| Type          | Description                          | Example                |  
+|---------------|--------------------------------------|------------------------|  
+| **Virus**     | Attaches to files; requires execution | ILOVEYOU (2000)       |  
+| **Worm**      | Self-replicating; spreads via networks | WannaCry (2017)       |  
+| **Trojan**    | Masquerades as legitimate software   | Emotet banking Trojan |  
+| **Ransomware**| Encrypts files for ransom            | Locky, REvil          |  
+| **Spyware**   | Steals data (keystrokes, screenshots)| Pegasus (mobile)      |  
+| **Rootkit**   | Gains kernel-level access            | Stuxnet               |  
+
+#### Social Engineering Attacks  
+| Type            | Method                              | Defense                     |  
+|-----------------|-------------------------------------|-----------------------------|  
+| **Phishing**    | Fake emails/websites                | Verify sender URLs          |  
+| **Spear Phishing** | Targeted phishing (e.g., CFO fraud) | Multi-factor authentication |  
+| **Vishing**     | Voice call scams ("IT support")     | Hang up & verify            |  
+| **Tailgating**  | Unauthorized physical access        | Badge readers               |  
+| **Quid Pro Quo**| "Free service" for credentials      | Employee training           |  
+
+---
+
+### 🛡️ Security Tools & Mitigations  
+
+#### Encryption Technologies  
+- **Full-Disk Encryption**: BitLocker (Windows), FileVault (macOS), LUKS (Linux)  
+- **File-Level Encryption**: EFS (Windows), GPG (cross-platform)  
+- **VPN Protocols**: IPSec, OpenVPN, WireGuard  
+
+#### Access Control  
+- **RBAC (Role-Based Access Control)**: Assign permissions by job function  
+- **MAC (Mandatory Access Control)**: Used in military/government (SELinux)  
+- **Password Policies**:  
+  - Minimum length (12+ chars)  
+  - Complexity requirements  
+  - Regular rotation (90 days)  
+
+#### Defense Tools  
+| Tool Category       | Examples                          | Purpose                          |  
+|---------------------|-----------------------------------|----------------------------------|  
+| **Firewalls**       | Windows Defender Firewall, pfSense | Block unauthorized traffic       |  
+| **IDS/IPS**         | Snort, Suricata                   | Detect/prevent intrusions        |  
+| **SIEM**           | Splunk, Wazuh                     | Centralized threat monitoring    |  
+| **Sandboxing**      | Cuckoo Sandbox, Windows Sandbox   | Analyze suspicious files safely  |  
+
+---
+
+### 🚦 Indicators of Compromise (IoCs)  
+- **System Symptoms**:  
+  - Unexpected CPU/RAM usage spikes  
+  - Unusual network traffic (e.g., beaconing)  
+  - Disabled security tools (firewall/AV)  
+- **Log Red Flags**:  
+  - Multiple failed login attempts  
+  - New admin accounts (`net user`)  
+  - Unusual process executions (`tasklist`)  
+
+---
+
+### 📜 Compliance & Best Practices  
+- **Regular Updates**: Patch OS/apps (WSUS, `apt upgrade`)  
+- **Backup 3-2-1 Rule**:  
+  - 3 copies of data  
+  - 2 different media types  
+  - 1 offsite copy  
+- **Mobile Device Management (MDM)**:  
+  - Remote wipe (Intune, Jamf)  
+  - Containerization (separate work/personal data)  
