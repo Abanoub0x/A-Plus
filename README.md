@@ -204,3 +204,72 @@ ipconfig /all             # Detailed network config
 - **Mobile Device Management (MDM)**:  
   - Remote wipe (Intune, Jamf)  
   - Containerization (separate work/personal data)  
+
+
+
+# Troubleshooting
+
+## General Troubleshooting Steps
+1. **Identify the Problem** – Gather information, ask users questions, and recreate the issue if possible.  
+2. **Establish a Theory of Probable Cause** – Start with simple causes before moving to complex ones.  
+3. **Test the Theory** – Verify if the cause actually solves the issue.  
+4. **Establish a Plan of Action** – If the theory is confirmed, plan steps to resolve it.  
+5. **Implement the Solution** – Apply the fix carefully.  
+6. **Verify Functionality** – Ensure the system works and no new issues were introduced.  
+7. **Document the Process** – Record symptoms, steps taken, and final resolution.
+
+## Common PC Issues
+- **Slow Performance** → Check CPU, RAM, background processes, and malware.  
+- **No Internet** → Verify cables, Wi-Fi, router, DNS, or IP settings.  
+- **Blue Screen of Death (BSOD)** → Check drivers, recent updates, or failing hardware.  
+- **Overheating** → Clean fans, reapply thermal paste, check airflow.  
+- **Peripheral Issues** → Update drivers, check cables/ports.  
+
+## Troubleshooting Tools
+- **ping** – Test network connectivity.  
+- **ipconfig/ifconfig** – Check IP configurations.  
+- **tracert/traceroute** – Trace packet path.  
+- **netstat** – Show open connections/ports.  
+- **Task Manager / Resource Monitor** – Monitor performance.  
+- **Event Viewer** – Logs system/application errors.  
+- **Safe Mode** – Boot with minimal drivers for debugging.  
+
+---
+
+# Cloud Computing
+
+## What is Cloud?
+Cloud computing delivers computing services (servers, storage, databases, networking, software) over the internet on-demand.
+
+## Cloud Service Models
+- **IaaS (Infrastructure as a Service)** – Provides virtualized computing resources. (e.g., AWS EC2, Azure VMs, Google Compute Engine).  
+- **PaaS (Platform as a Service)** – Provides environment for developers to build apps. (e.g., Heroku, Google App Engine).  
+- **SaaS (Software as a Service)** – Provides software accessible via browser. (e.g., Gmail, Office 365, Salesforce).  
+
+## Cloud Deployment Models
+- **Public Cloud** – Services offered over the internet and shared across multiple users.  
+- **Private Cloud** – Exclusive cloud infrastructure for a single organization.  
+- **Hybrid Cloud** – Mix of public and private for flexibility.  
+- **Community Cloud** – Shared by several organizations with similar needs.  
+
+## Advantages of Cloud
+- Scalability  
+- Cost efficiency (pay-as-you-go)  
+- Accessibility from anywhere  
+- Reliability and redundancy  
+- Security (depends on provider + user config)  
+
+## Common Cloud Security Concerns
+- Data breaches  
+- Misconfigurations  
+- Insecure APIs  
+- Lack of encryption  
+- Insider threats  
+
+## Troubleshooting in Cloud
+- **Connectivity Issues** → Check VPN, firewall, or internet link.  
+- **Service Unavailability** → Check cloud provider’s status page.  
+- **Latency** → Check network path, region proximity, load balancing.  
+- **Authentication Problems** → Verify IAM policies, roles, and permissions.  
+
+---
