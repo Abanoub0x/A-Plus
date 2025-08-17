@@ -74,16 +74,46 @@ It’s a quick reference and a portfolio of concepts I’ve learned and practice
   - `%APPDATA%` / `%LOCALAPPDATA%` → roaming/local app data.
   - `%PROGRAMFILES%`, `%PROGRAMFILES(X86)%`, `%SYSTEMROOT%`.
 
-- **CMD examples**:
-  ```cmd
-  :: show one
-  echo %PATH%
+---
+## 🌐 Networking & Remote Access  
+### Core Networking Concepts  
+- **IPv4 vs IPv6**:  
+  - IPv4: 32-bit (e.g., `192.168.1.1`), NAT, limited addresses.  
+  - IPv6: 128-bit (e.g., `2001:0db8:85a3::8a2e:0370:7334`), no NAT, built-in security.  
+- **DHCP (Dynamic Host Configuration Protocol)**:  
+  - Assigns IP addresses automatically (UDP port 67/68).  
+  - `ipconfig /release` and `ipconfig /renew` to refresh leases.  
+- **DNS (Domain Name System)**:  
+  - Resolves hostnames to IPs (e.g., `google.com` → `142.250.190.78`).  
+  - Uses UDP port 53; troubleshoot with `nslookup` or `dig`.  
 
-  :: set for current CMD session (temporary)
-  set MYVAR=hello
 
-  :: set permanently for current user (new processes only)
-  setx MYVAR "hello"
+### Key Ports & Protocols  
+| Port | Protocol | Use Case                     |  
+|------|----------|------------------------------|  
+| 21   | FTP      | File transfers (unencrypted) |  
+| 22   | SSH      | Secure remote shell          |  
+| 23   | Telnet   | Unencrypted remote access    |  
+| 25   | SMTP     | Email sending                |  
+| 53   | DNS      | Domain name resolution       |  
+| 80   | HTTP     | Web traffic (unsecured)      |  
+| 443  | HTTPS    | Web traffic (encrypted)      |  
+| 3389 | RDP      | Remote Desktop Protocol      |  
+| 445  | SMB      | File/print sharing (Windows) |  
 
-  :: append to PATH (user scope)
-  setx PATH "%PATH%;C:\Tools"
+### Remote Access Technologies  
+- **RDP (Remote Desktop Protocol)**:  
+  - Windows-native remote GUI access (port 3389).  
+  - Requires client (`mstsc.exe`) and host enablement.  
+- **VPN (Virtual Private Network)**:  
+  - Encrypted tunnel for secure remote access (e.g., IPSec, OpenVPN).  
+- **SSH (Secure Shell)**:  
+  - Encrypted command-line access (Linux/Windows via OpenSSH).  
+
+### Troubleshooting Commands  
+```cmd
+ping google.com           # Test connectivity  
+tracert google.com        # Trace network path  
+netstat -ano              # List active connections + PIDs  
+nslookup google.com       # DNS lookup  
+ipconfig /all             # Detailed network config  
