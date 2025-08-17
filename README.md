@@ -153,7 +153,25 @@ It’s a quick reference and a portfolio of concepts I’ve learned and practice
 ---
 
 ## 🧩 How Firmware, Drivers & OS Work Together
-- **Firmware (BIOS/UEFI)**: initializes hardware, passes control to bootloader  
-- **Drivers**: translators between OS and hardware  
-- **Operating System**: manages processes, memory, hardware, and provides APIs for apps
+- **Firmware (BIOS/UEFI)**: Initializes hardware and passes control to the bootloader during startup.  
+- **Drivers**: Act as translators between the operating system and hardware devices.  
+- **Operating System**: Manages processes, memory, hardware access, and provides APIs for applications.
+
+### 🖱️ Example: USB Mouse
+1. **Mouse Firmware**:  
+   - Embedded in the mouse itself.  
+   - Handles basic input detection (e.g., movement, button clicks).  
+   - Communicates via USB signals to the host computer.
+
+2. **Mouse Driver** (on the OS):  
+   - Interprets USB signals from the mouse firmware.  
+   - Converts raw input into cursor movement and click actions.  
+   - Ensures compatibility with OS-level features like pointer acceleration or gestures.
+
+3. **Operating System**:  
+   - Receives input from the driver.  
+   - Routes it to the active application (e.g., moving the cursor in a browser or clicking a button in a game).  
+   - May expose APIs for developers to customize mouse behavior.
+
+> This layered interaction ensures seamless communication from physical hardware to user experience.
 
